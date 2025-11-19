@@ -1,0 +1,34 @@
+
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/.vscode/
+
+# Ignore default Playwright snapshots (use test-data/snapshots/visual instead)
+**/*-snapshots/
+
+# Artillery load test results
+/reports/
+**/test-results.json
+**/artillery-results.json
+**/spaces-ticket-creation-results.json
+**/ssp-ticket-creation-results.json
+**/artillery-report.html
+
+# Compiled TypeScript output
+/dist/
+**/dist/
+*.js.map
+
+# Environment files
+.env
+.env.*
+!.env.example
+/dump/
+/rplaunch*
+.artillery-tmp/
+
+
+.DS_Store

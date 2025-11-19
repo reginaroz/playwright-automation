@@ -1,0 +1,28 @@
+{
+  "name": "playwright-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reginaroz/playwright-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reginaroz/playwright-automation/issues"
+  },
+  "homepage": "https://github.com/reginaroz/playwright-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^24.10.1",
+    "prettier-linter-helpers": "^1.0.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

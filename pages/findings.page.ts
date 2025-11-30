@@ -39,4 +39,52 @@ export class FindingsPage {
       await expect(this.firstRowCheckbox).toHaveClass(/p-highlight/);
     });
   }
+
+  async getFirstRowFindingName(): Promise<string> {
+    return await test.step('Get first row finding name', async () => {
+      const firstRow = this.tableRows.first();
+      await firstRow.waitFor({ state: 'visible' });
+      // Finding Name is in the 2nd td (index 1), inside a span with data-testid="Text"
+      const findingNameCell = firstRow.locator('td').nth(1).locator('[data-testid="Text"]');
+      const text = await findingNameCell.textContent();
+      return text?.trim() || '';
+    });
+  }
+
+  async getFirstRowTimestamp(): Promise<string> {
+    return await test.step('Get first row timestamp', async () => {
+      const firstRow = this.tableRows.first();
+      await firstRow.waitFor({ state: 'visible' });
+      // Timestamp is in the 3rd td (index 2), with double-line text format
+      const timestampCell = firstRow.locator('td').nth(2);
+      const dateTitle = await timestampCell.locator('._double-line-text-title_10fbb_50').textContent();
+      const timeSubtitle = await timestampCell.locator('._double-line-text-subtitle_10fbb_72').textContent();
+      return `${dateTitle?.trim()} - ${timeSubtitle?.trim()}`;
+    });
+  }
+
+  async getFirstRowStatus(): Promise<string> {
+    return await test.step('Get first row status', async () => {
+      const firstRow = this.tableRows.first();
+      await firstRow.waitFor({ state: 'visible' });
+      // Status is in the 6th td (index 5), inside a tag with class p-tag-value
+      const statusCell = firstRow.locator('td').nth(5);
+      const statusTag = await statusCell.locator('.p-tag-value').textContent();
+      return statusTag?.trim() || '';
+    });
+  }
+
+  async getFirstRowData() {
+    return await test.step('Get first row data (Finding Name, Timestamp, Status)', async () => {
+      const findingName = await this.getFirstRowFindingName();
+      const timestamp = await this.getFirstRowTimestamp();
+      const status = await this.getFirstRowStatus();
+      
+      return {
+        findingName,
+        timestamp,
+        status
+      };
+    });
+  }
 }

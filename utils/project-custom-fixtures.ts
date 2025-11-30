@@ -1,4 +1,4 @@
-import { test as base, BrowserContext } from '@playwright/test';
+import { test as base, expect, BrowserContext } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 import { DownloadPage } from '../pages/download.page';
 import { FindingsPage } from '../pages/findings.page';
@@ -37,3 +37,5 @@ export const test = base.extend<AllFixtures>({
     await use(exportPage);
   }
 });
+
+export { expect };

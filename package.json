@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:ui": "npx playwright test tests/ui --headed --workers=1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reginaroz/playwright-automation.git"

@@ -1,16 +1,24 @@
-import { test } from '@playwright/test';
-import { LoginPage } from '../../pages/login.page';
+import { test } from '../../utils/project-custom-fixtures';
 
 test.describe('Dashboard Tests', () => {
 
-  test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
+  test.beforeEach(async ({ loginPage }) => {
     await loginPage.loginAsCandidate();
   });
 
-  test('simulate and download finding report', async ({ page, request }) => {
-
+  test('simulate and download finding report', async ({ page, downloadPage, findingsPage, commonFunctions, exportPage }) => {
     await page.goto('/cym/');
-    await page.waitForSelector('[data-testid="DownloadIcon"]');
+    await downloadPage.deleteDownloads();
+    await downloadPage.closeDownloadPanel();
+    await findingsPage.navigateToFindingsTab();
+    await commonFunctions.selectModuleFilter('Module', 'BAS');
+    await findingsPage.selectFirstRow();
+    await commonFunctions.clickExportButton();
+    await exportPage.verifyExportOverlayIsOpen();
+    await exportPage.clickExportButton();
+    await page.reload();
+    await downloadPage.verifyReportExists('odule - Findings');
+    await downloadPage.clickDownloadReport();
+
 });
 });
